@@ -6,3 +6,9 @@
 //
 
 import Foundation
+struct Ressources{
+    enum image:String {
+        case Pacto = "house.lodge.fill"
+        case Center = "rectangle.center.inset.filled"
+    }
+}

@@ -7,9 +7,11 @@
 
 import Foundation
 import SwiftUI
-struct ModelCathedrale: Identifiable {
+struct CathedralModel: Identifiable, Equatable {
     var id:UUID = UUID()
     var name:String
     var longitude:Double
     var latitude:Double
+    var around_lon:Double
+    var around_lat:Double
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct LookAround: View {
+struct LookAroundView: View {
     @State var lookAroundScene:MKLookAroundScene?
     var selectedLocation:CathedralModel
     
@@ -33,7 +33,7 @@ struct LookAround: View {
     func getlookAroundScene() {
         lookAroundScene = nil
         Task {
-            let request = MKLookAroundSceneRequest(coordinate: CLLocationCoordinate2D(latitude: selectedLocation.latitude,longitude: selectedLocation.longitude))
+            let request = MKLookAroundSceneRequest(coordinate: CLLocationCoordinate2D(latitude: selectedLocation.around_lat,longitude: selectedLocation.around_lon))
             lookAroundScene = try? await request.scene
         }
     }
@@ -41,5 +41,6 @@ struct LookAround: View {
 
 
 #Preview {
-    LookAround(selectedLocation: CathedralModel(name: "Notre Dame de Strasbourg", longitude: 7.7510521, latitude: 48.5818885))
+    LookAroundView(selectedLocation: CathedralModel(name: "Notre Dame de Strasbourg", longitude: 7.7510521, latitude: 48.5818885,around_lon: 7.7510521,around_lat:                 48.5818885))
 }
+
