@@ -13,6 +13,7 @@ struct LookAroundView: View {
     var selectedLocation:CathedralModel
     
     var body: some View {
+        
         LookAroundPreview(initialScene: lookAroundScene)
             .overlay(alignment:.bottomTrailing) {
                 HStack {
@@ -26,14 +27,18 @@ struct LookAroundView: View {
                 getlookAroundScene()
                 
             }
+        // en cas de changement de selection de position 
             .onChange(of: selectedLocation) {
                 getlookAroundScene()
             }
     }
+    // optenir une position
     func getlookAroundScene() {
+        // pas de selection
         lookAroundScene = nil
         Task {
             let request = MKLookAroundSceneRequest(coordinate: CLLocationCoordinate2D(latitude: selectedLocation.around_lat,longitude: selectedLocation.around_lon))
+            // essai d'afficher la requete
             lookAroundScene = try? await request.scene
         }
     }
