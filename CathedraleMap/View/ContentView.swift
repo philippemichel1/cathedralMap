@@ -64,8 +64,6 @@ struct ContentView: View {
                             .background(.white)
                             .opacity(0.5)
                             .cornerRadius(10)
-                            //.position(x:365,y: 80)
-                        
                     }
             }
         }
