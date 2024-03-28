@@ -10,16 +10,16 @@ import MapKit
 
 struct ContentView: View {
     
-    var cathedralList:[CathedralModel] = 
-      [CathedralModel(name: "Notre-Dame de Paris", longitude: 2.3500501, latitude: 48.85293,around_lon: 2.350675,around_lat: 48.853127),
-        CathedralModel(name: "Chartres, Cloître Notre-Dame,", longitude: 1.487618, latitude: 48.4470284,around_lon: 1.4878371 ,around_lat:48.4478026),
-        CathedralModel(name: "Notre-Dame d’Amiens", longitude: 2.3020286, latitude: 49.894622,around_lon: 2.3009013,around_lat: 49.8972943),
-        CathedralModel(name: "Saint-Étienne de Bourges", longitude: 2.398494, latitude: 47.081774,around_lon: 2.398224, around_lat: 47.082329),
-        CathedralModel(name: "Saint-Pierre et Saint-Paul de Nantes", longitude: -1.550351, latitude: 47.217731,around_lon:-1.5512855 ,around_lat: 47.2181706),
-        CathedralModel(name: "Notre Dame de Strasbourg", longitude: 7.7510521, latitude: 48.5818885,around_lon: 7.7510521,around_lat: 48.5818885),
-        CathedralModel(name: "Notre-Dame de Reims", longitude: 4.033298, latitude: 49.2535616,around_lon: 4.0341872, around_lat: 49.2544331)]
+    var cathedralList:[CathedralModel] =
+    [CathedralModel(name: "Notre-Dame de Paris", longitude: 2.3500501, latitude: 48.85293,around_lon: 2.350675,around_lat: 48.853127),
+     CathedralModel(name: "Chartres, Cloître Notre-Dame,", longitude: 1.487618, latitude: 48.4470284,around_lon: 1.4878371 ,around_lat:48.4478026),
+     CathedralModel(name: "Notre-Dame d’Amiens", longitude: 2.3020286, latitude: 49.894622,around_lon: 2.3009013,around_lat: 49.8972943),
+     CathedralModel(name: "Saint-Étienne de Bourges", longitude: 2.398494, latitude: 47.081774,around_lon: 2.398224, around_lat: 47.082329),
+     CathedralModel(name: "Saint-Pierre et Saint-Paul de Nantes", longitude: -1.550351, latitude: 47.217731,around_lon:-1.5512855 ,around_lat: 47.2181706),
+     CathedralModel(name: "Notre Dame de Strasbourg", longitude: 7.7510521, latitude: 48.5818885,around_lon: 7.7510521,around_lat: 48.5818885),
+     CathedralModel(name: "Notre-Dame de Reims", longitude: 4.033298, latitude: 49.2535616,around_lon: 4.0341872, around_lat: 49.2544331)]
     
-
+    
     
     @State private var cameraPosition:MapCameraPosition = .automatic
     @State private var openView:Bool = false
@@ -40,7 +40,7 @@ struct ContentView: View {
         }
         .mapStyle(.hybrid(elevation: .realistic))
         .safeAreaInset(edge:.bottom){
-                VStack {
+            VStack {
                     if let selectCathedral {
                         if let item = cathedralList.first(where: {$0.id == selectCathedral})  {
                             LookAroundView(selectedLocation: item)
@@ -49,28 +49,28 @@ struct ContentView: View {
                                 .padding([.top,.horizontal])
                         }
                     }
-                }
-        }
-        .overlay(alignment:.topTrailing,content: {
-            Button {
-                cameraPosition = .automatic
-            } label: {
-                Image(systemName: Ressources.image.Center.rawValue)
-                    .frame(width: 40, height: 40)
-                    .cornerRadius(30)
-                    
+                    Button {
+                        cameraPosition = .automatic
+                    } label: {
+                        Image(systemName: Ressources.image.Center.rawValue)
+                            .frame(width:43,height: 43)
+                            .background(.white)
+                            .opacity(0.5)
+                            .cornerRadius(10)
+                            //.position(x:365,y: 80)
+                        
+                    }
+                
             }
-            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            .background(.white)
-            .frame(width:50,height: 150)
-            
-            
+        }
         
-        })
         .onChange(of:selectCathedral) {
             guard let selectCathedral else {return}
             guard let  item = cathedralList.first(where: {$0.id == selectCathedral}) else {return}
         }
+        .overlay(alignment:.topTrailing,content: {
+            
+        })
         .onAppear(perform: {
             print(cathedralList)
             Task {
