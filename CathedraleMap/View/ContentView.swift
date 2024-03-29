@@ -30,7 +30,7 @@ struct ContentView: View {
         Map(position: $cameraPosition, selection: $selectCathedral) {
             ForEach(cathedralList, id:\ .id ) { cathedral in
                 Annotation(cathedral.name, coordinate: CLLocationCoordinate2D(latitude: cathedral.latitude, longitude: cathedral.longitude), anchor: .bottom) {
-                   PinAnnotation(masquerAnnotation: $openView)
+                   PinAnnotation(hideAnnotation: $openView)
                    
                 }
                 //creer un identifiant unique, un marque  pour chaque annotation affichée
@@ -42,10 +42,6 @@ struct ContentView: View {
             MapPitchToggle()
         }
         .mapStyle(.hybrid(elevation: .realistic))
-        .onMapCameraChange(frequency:.continuous) { context in
-            print(context.region)
-            
-        }
         .safeAreaInset(edge:.bottom){
             
             VStack {
@@ -77,7 +73,7 @@ struct ContentView: View {
             guard let  item = cathedralList.first(where: {$0.id == selectCathedral}) else {return}
         }
         .onAppear(perform: {
-            print(cathedralList)
+            //print(cathedralList)
             Task {
             }
         })

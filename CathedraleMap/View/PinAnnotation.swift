@@ -7,10 +7,10 @@
 
 import SwiftUI
 struct PinAnnotation: View {
-    let tailleTrameCercle:CGFloat = 45
-    let tailleImage:CGFloat = 22
-    let tailleTriangle:CGFloat = 13
-    @Binding var masquerAnnotation:Bool
+    let sizeTemplateCircle:CGFloat = 45
+    let sizePicture:CGFloat = 22
+    let sizeTriangle:CGFloat = 13
+    @Binding var hideAnnotation:Bool
     
     
     // Marqueurs de carte personnalisée
@@ -18,35 +18,35 @@ struct PinAnnotation: View {
         VStack(spacing: 0)  {
             ZStack{
                 Circle()
-                    .frame(width: tailleTrameCercle, height:tailleTrameCercle)
+                    .frame(width: sizeTemplateCircle, height:sizeTemplateCircle)
                     .foregroundColor(.red)
-                    .opacity(masquerAnnotation ? 0 : 1)
+                    .opacity(hideAnnotation ? 0 : 1)
                 Image(systemName: Ressources.image.Pacto.rawValue )
                     .resizable()
                     .scaledToFit()
-                    .frame(width: tailleImage, height: tailleImage)
+                    .frame(width: sizePicture, height: sizePicture)
                     .font(.headline)
                     .foregroundColor(Color("MonVert"))
                     .padding(6)
                     .background()
                     .cornerRadius(36)
-                    .opacity(masquerAnnotation ? 0 : 1)
+                    .opacity(hideAnnotation ? 0 : 1)
             }
             Image(systemName: "triangle.fill")
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.red)
-                .frame(width: tailleTriangle, height: tailleTriangle)
+                .frame(width: sizeTriangle, height: sizeTriangle)
                 .rotationEffect(Angle(degrees: 180))
                 .offset(y:-3)
                 .padding(.bottom, 40)
-                .opacity(masquerAnnotation ? 0 : 1)
-
+            // pas utilidé 
+                .opacity(hideAnnotation ? 0 : 1)
         }
     }
 }
 
 #Preview {
-    PinAnnotation(masquerAnnotation: .constant(false))
+    PinAnnotation(hideAnnotation: .constant(false))
 }
 
