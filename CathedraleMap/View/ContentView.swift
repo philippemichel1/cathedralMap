@@ -26,17 +26,18 @@ struct ContentView: View {
     
     
     var body: some View {
-        // position de la caméra et numéro de selection
+        // position de la caméra et numéro de sélection
         Map(position: $cameraPosition, selection: $selectCathedral) {
             ForEach(cathedralList, id:\ .id ) { cathedral in
                 Annotation(cathedral.name, coordinate: CLLocationCoordinate2D(latitude: cathedral.latitude, longitude: cathedral.longitude), anchor: .bottom) {
                    PinAnnotation(masquerAnnotation: $openView)
                    
                 }
-                //repere pour chaque id d'annotation
+                //creer un identifiant unique, un marque  pour chaque annotation affichée
                 .tag(cathedral.id)
             }
         }
+        // bouton de control (3D)
         .mapControls{
             MapPitchToggle()
         }
@@ -48,7 +49,7 @@ struct ContentView: View {
         .safeAreaInset(edge:.bottom){
             
             VStack {
-                // vérifie si la selection appartient bien à la liste des cathédrales
+                // vérifie si la sélection appartient bien à la liste des cathédrales
                     if let selectCathedral {
                         if let item = cathedralList.first(where: {$0.id == selectCathedral})  {
                             LookAroundView(selectedLocation: item)

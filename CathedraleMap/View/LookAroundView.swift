@@ -33,13 +33,13 @@ struct LookAroundView: View {
                 getlookAroundScene()
             }
     }
-    // optenir une position
+    // optenir une position longitude et latitude pour afficher une video
     func getlookAroundScene() {
-        // pas de selection
+        // pas de selection au depart
         lookAroundScene = nil
         Task {
             let request = MKLookAroundSceneRequest(coordinate: CLLocationCoordinate2D(latitude: selectedLocation.around_lat,longitude: selectedLocation.around_lon))
-            // essai d'afficher la requete
+            // essaie d'afficher la requête
             lookAroundScene = try? await request.scene
         }
     }
@@ -47,6 +47,6 @@ struct LookAroundView: View {
 
 
 #Preview {
-    LookAroundView(selectedLocation: CathedralModel(name: "Notre Dame de Strasbourg", longitude: 7.7510521, latitude: 48.5818885,around_lon: 7.7510521,around_lat:                 48.5818885))
+    LookAroundView(selectedLocation: CathedralModel(name: "Notre Dame de Strasbourg", longitude: 7.7510521, latitude: 48.5818885,around_lon: 7.7510521,around_lat:48.5818885))
 }
 
