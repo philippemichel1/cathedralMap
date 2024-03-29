@@ -18,6 +18,7 @@ struct LookAroundView: View {
             .overlay(alignment:.bottomTrailing) {
                 HStack {
                     Text("\(selectedLocation.name)")
+                        
                 }
                 .font(.caption)
                 .foregroundStyle(.white)
