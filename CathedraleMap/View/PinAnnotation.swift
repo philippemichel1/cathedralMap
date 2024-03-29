@@ -12,6 +12,8 @@ struct PinAnnotation: View {
     let tailleTriangle:CGFloat = 13
     @Binding var masquerAnnotation:Bool
     
+    
+    // Marqueurs de carte personnalisée
     var body: some View {
         VStack(spacing: 0)  {
             ZStack{
@@ -42,9 +44,7 @@ struct PinAnnotation: View {
 
         }
     }
-        
 }
-
 
 #Preview {
     PinAnnotation(masquerAnnotation: .constant(false))

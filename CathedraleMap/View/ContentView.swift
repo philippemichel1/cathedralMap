@@ -59,6 +59,8 @@ struct ContentView: View {
                         }
                     }
                     Button {
+                        // repositionne la caméra sur la vue d'ensemble après un zoom
+                        // par exemple.
                         cameraPosition = .automatic
                     } label: {
                         Image(systemName: Ressources.image.Center.rawValue)
